@@ -1,0 +1,13 @@
+<ExampleRoot>:
+    orientation: "vertical"
+    Button:
+        id: main_button
+        disabled: root.counter % 2 == 0
+        text: str(self.disabled)
+    Button:
+        text: "Toggle disabled state of the main button"
+        on_release: root.toggle_main_button_disable()
+    Button:
+        text: "Increment counter: {}".format(root.counter)
+        on_release: root.counter += 1
+
