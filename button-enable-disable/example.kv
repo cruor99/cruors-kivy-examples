@@ -1,13 +1,37 @@
 <ExampleRoot>:
     orientation: "vertical"
     Button:
+        """
+            A button given the ID of main_button.
+            This is the button we will be enabling and disabling.
+            We also bind the disabled property to the counter property,
+            along with a conditional in that if the counter is an odd number -
+            it will be disabled.
+        """
         id: main_button
         disabled: root.counter % 2 == 0
         text: str(self.disabled)
     Button:
         text: "Toggle disabled state of the main button"
+        """
+            Call a method in the root class of this particuler rule
+            In the method, you have to refer to the ID through self.ids
+        """
         on_release: root.toggle_main_button_disable()
+        """
+            A way to do the above in a one-liner in KV lang
+            Here you refer to the ID by simply using the name you gave it
+            Uncomment this and comment out the above to try it out.
+        """
+        #on_release: main_button.disabled = True if main_button.disabled == False else False
+
     Button:
+        """
+            This button simply increments the counter property,
+            belonging to the root widget of this rule.
+            Because of the binding and conditions enabled in the main_button, 
+            this will alternate between disabled and enabled.
+        """
         text: "Increment counter: {}".format(root.counter)
         on_release: root.counter += 1
 
